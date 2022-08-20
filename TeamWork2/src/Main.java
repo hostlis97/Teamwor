@@ -48,10 +48,20 @@ class Main {
                     continue;
                 }
 
-                if (Integer.parseInt(parts[1]) < 0) {
-                    System.out.println("Нельзя выбрать такое количество товара! ");
-                    continue;
+                if (currentQuan == 0) {
+                    selected[currentProduct - 1] = currentQuan;
                 }
+
+                if (currentQuan < 0) {
+                    if (selected[currentProduct - 1] >= Math.abs(currentQuan)) {
+                        selected[currentProduct - 1] = selected[currentProduct - 1] + currentQuan;
+                        continue;
+                    } else {
+                        System.out.println("Вы пытаетесь удалить из корзины больше товаров, чем там имеется");
+                        continue;
+                    }
+                }
+
                 selected[currentProduct - 1] = selected[currentProduct - 1] + currentQuan;
             } else {
                 System.out.println("Введено неверное количество чисел! ");
